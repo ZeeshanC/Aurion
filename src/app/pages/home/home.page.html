@@ -1,0 +1,119 @@
+<article class="page">
+  <section class="hero">
+    <div class="wrap hero-copy">
+      <h1>
+        <span class="outline">We create</span>
+        <span class="outline">space.</span>
+      </h1>
+    </div>
+  </section>
+
+  @defer (on viewport; prefetch on idle) {
+  <section class="section offer-section">
+    <div class="wrap">
+      <div class="section-head" appReveal>
+        <div>
+          <p class="kicker">Our specialization</p>
+          <h2>What we offer</h2>
+        </div>
+        <a class="text-link" routerLink="/disciplines">View all services</a>
+      </div>
+      <div class="offer-grid">
+        @for (item of offers; track item.index) {
+          <a
+            matRipple
+            class="offer-card ripple-surface"
+            appReveal
+            [revealDelay]="$index * 90"
+            routerLink="/disciplines"
+          >
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+            <span>Read more</span>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section story-section">
+    <div class="wrap story-layout">
+      <div appReveal>
+        <p class="kicker">{{ theme.brand }}</p>
+        <p class="kicker">Our story</p>
+        <h2>We transform. We create. With a precise hand.</h2>
+      </div>
+      <div appReveal [revealDelay]="120">
+        <p>
+          A room has to work for the people in it and for the years after the photographs. We learn the brief, study how the space is actually used, and then compose an interior that feels specific rather than styled.
+        </p>
+        <p>
+          Homes, offices, restaurants, and retail floors are planned as one practice: proportion, light, and materials that can be lived with.
+        </p>
+        <a matRipple class="btn ghost ripple-surface" routerLink="/atelier">About us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head" appReveal>
+        <div>
+          <p class="kicker">Our portfolio</p>
+          <h2>Industries we serve</h2>
+        </div>
+      </div>
+      <div class="industry-row">
+        @for (name of industries; track name) {
+          <a matRipple class="ripple-surface" appReveal [revealDelay]="$index * 50" routerLink="/works">{{ name }}</a>
+        }
+      </div>
+    </div>
+  </section>
+  } @placeholder {
+    <div class="defer-slot" aria-hidden="true"></div>
+  }
+
+  @defer (on viewport; prefetch on idle) {
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head" appReveal>
+        <div>
+          <p class="kicker">Our portfolio</p>
+          <h2>Featured projects</h2>
+        </div>
+        <a class="text-link" routerLink="/works">View all works</a>
+      </div>
+      <div class="feature-grid">
+        @for (work of featured; track work.slug) {
+          <a
+            matRipple
+            class="work-card ada-card ripple-surface"
+            appReveal
+            [revealDelay]="$index * 70"
+            [routerLink]="['/works', work.slug]"
+          >
+            <app-viz [kind]="work.viz" />
+            <div class="work-meta">
+              <p>{{ work.typology }}</p>
+              <h3>{{ work.title }}</h3>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+  } @placeholder {
+    <div class="defer-slot defer-slot-tall" aria-hidden="true"></div>
+  }
+
+  @defer (on viewport; prefetch on idle) {
+  <section class="cta-band" appReveal>
+    <h2>Have a project in mind?</h2>
+    <p class="lede">Tell us the space, the city, and when you would like to meet.</p>
+    <button matRipple type="button" class="btn solid ripple-surface" appMeeting>Book a meeting</button>
+  </section>
+  } @placeholder {
+    <div class="defer-slot defer-slot-short" aria-hidden="true"></div>
+  }
+</article>

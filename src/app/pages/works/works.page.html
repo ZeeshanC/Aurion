@@ -1,0 +1,36 @@
+<article class="page">
+  <header class="wrap subhero" appReveal>
+    <p class="kicker"><span>03</span> Works</p>
+    <h1>The archive of <em>built rooms</em>.</h1>
+    <p class="lede">Six environments from the current orbit. Filter by the way the room is used.</p>
+    <div class="filters" role="tablist" aria-label="Filter works">
+      @for (typology of typologies; track typology) {
+        <button matRipple type="button" class="ripple-surface" [class.is-on]="active() === typology" (click)="select(typology)">
+          {{ typology }}
+        </button>
+      }
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap work-grid">
+      @for (work of works(); track work.slug) {
+        <a
+          matRipple
+          class="work-card ripple-surface"
+          animate.enter="rise-in"
+          animate.leave="rise-out"
+          [style.animation-delay.ms]="$index * 70"
+          [routerLink]="['/works', work.slug]"
+        >
+          <app-viz [kind]="work.viz" />
+          <div class="work-meta">
+            <span class="mono">{{ work.code }} · {{ work.year }}</span>
+            <h3>{{ work.title }}</h3>
+            <p>{{ work.location }} · {{ work.typology }} · {{ work.area }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+</article>

@@ -1,0 +1,48 @@
+<article class="page">
+  @if (project(); as work) {
+    <header class="wrap subhero" appReveal>
+      <p class="kicker"><span>{{ work.code }}</span> {{ work.typology }}</p>
+      <h1>{{ work.title }}</h1>
+      <p class="lede">{{ work.summary }}</p>
+    </header>
+
+    <section class="section">
+      <div class="wrap detail-hero" appReveal [revealDelay]="80">
+        <app-viz [kind]="work.viz" />
+        <dl class="meta-list">
+          <div>
+            <dt>Location</dt>
+            <dd>{{ work.location }}</dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd>{{ work.year }}</dd>
+          </div>
+          <div>
+            <dt>Area</dt>
+            <dd>{{ work.area }}</dd>
+          </div>
+          <div>
+            <dt>Coordinates</dt>
+            <dd>{{ work.coords }}</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="wrap story" appReveal [revealDelay]="140">
+        @for (paragraph of work.story; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+        @if (next(); as upcoming) {
+          <a matRipple class="btn ghost ripple-surface" [routerLink]="['/works', upcoming.slug]">Next · {{ upcoming.title }}</a>
+        }
+      </div>
+    </section>
+  } @else {
+    <header class="wrap subhero">
+      <p class="kicker">Archive</p>
+      <h1>Signal lost.</h1>
+      <p class="lede">That environment is not in the current orbit.</p>
+      <a class="btn solid" routerLink="/works">Return to works</a>
+    </header>
+  }
+</article>

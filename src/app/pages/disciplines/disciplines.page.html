@@ -1,0 +1,22 @@
+<article class="page">
+  <header class="wrap subhero" appReveal>
+    <p class="kicker"><span>02</span> Disciplines</p>
+    <h1>Practice, divided into <em>clear signals</em>.</h1>
+    <p class="lede">
+      The same atelier moves through houses, hotels, workplaces, wellness, retail, and the research that feeds them. The bias stays: hide the machine, honor the material, design the night.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="wrap plain-list">
+      @for (item of disciplines; track item.index) {
+        <article matRipple class="holo-card ripple-surface" appReveal [revealDelay]="$index * 70">
+          <span class="idx">Discipline {{ item.index }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      }
+      <a matRipple class="btn solid ripple-surface" routerLink="/contact">Commission a discipline</a>
+    </div>
+  </section>
+</article>

@@ -1,0 +1,93 @@
+<article class="page">
+  <header class="wrap subhero" appReveal>
+    <p class="kicker"><span>01</span> Atelier</p>
+    <h1>An interior practice with a <em>future bias</em>.</h1>
+    <p class="lede">
+      {{ theme.brand }} is a spatial atelier working between Dubai, Singapore, and Oslo. We design rooms for people who expect the next decade to feel considered, not louder.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="portrait" appReveal>
+        <app-viz kind="vertex" />
+      </div>
+      <div class="plain-list" appReveal [revealDelay]="100">
+        <p>
+          The studio began as a light workshop and grew into full environments: private houses, hotels, baths, and the rooms where companies think. We still prototype finishes before we promise them.
+        </p>
+        <p>
+          Clients come for a look and stay for the behavior of the room. Temperature, hush, the path of a person at night, the way a material ages after the photographs are done.
+        </p>
+        <a matRipple class="btn ghost ripple-surface" routerLink="/works">See the work</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Principles</p>
+          <h2>What we refuse to decorate.</h2>
+        </div>
+      </div>
+      <div class="disc-grid">
+        @for (item of principles; track item.title) {
+          <article class="holo-card" appReveal [revealDelay]="$index * 80">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Material index</p>
+          <h2>Surfaces we will sign.</h2>
+        </div>
+      </div>
+      <div class="chip-row">
+        @for (item of materials; track item) {
+          <span appReveal [revealDelay]="$index * 40">{{ item }}</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">People</p>
+          <h2>The core signal.</h2>
+        </div>
+      </div>
+      <div class="team-grid">
+        @for (person of team; track person.code) {
+          <article class="team-card" appReveal [revealDelay]="$index * 70">
+            <span class="idx">{{ person.code }}</span>
+            <h3>{{ person.name }}</h3>
+            <p>{{ person.role }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap studio-list">
+      @for (studio of studios; track studio.city) {
+        <article class="studio-card" appReveal [revealDelay]="$index * 80">
+          <p class="idx">Studio</p>
+          <h3>{{ studio.city }}</h3>
+          <p>{{ studio.role }} · {{ studio.note }}</p>
+        </article>
+      }
+    </div>
+  </section>
+</article>

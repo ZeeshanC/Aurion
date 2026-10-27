@@ -1,0 +1,26 @@
+<article class="page">
+  @if (article(); as note) {
+    <header class="wrap subhero" appReveal>
+      <p class="kicker"><span>{{ note.code }}</span> {{ note.date }}</p>
+      <h1>{{ note.title }}</h1>
+      <p class="lede">{{ note.excerpt }}</p>
+    </header>
+    <section class="section">
+      <div class="wrap detail-hero" appReveal [revealDelay]="90">
+        <app-viz [kind]="note.viz" />
+        <div class="story">
+          @for (paragraph of note.body; track $index) {
+            <p>{{ paragraph }}</p>
+          }
+          <a class="btn ghost" routerLink="/journal">Back to journal</a>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <header class="wrap subhero">
+      <p class="kicker">Journal</p>
+      <h1>Signal lost.</h1>
+      <a class="btn solid" routerLink="/journal">Return to journal</a>
+    </header>
+  }
+</article>

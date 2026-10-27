@@ -1,0 +1,85 @@
+<ion-app>
+
+  @defer (on idle) {
+  <ion-menu class="holo-menu" menuId="nav" contentId="main" side="end" type="overlay" (ionWillOpen)="animateMenu()">
+    <ion-content>
+      <div class="menu-panel">
+        <div class="menu-top">
+          <p class="mono">Index</p>
+          <button matRipple type="button" class="btn tiny ghost ripple-surface" (click)="closeMenu()">Close</button>
+        </div>
+        <nav>
+          @for (item of navigation; track item.path) {
+            <a matRipple class="ripple-surface" [routerLink]="item.path" routerLinkActive="is-active">
+              {{ item.label }}
+              <small>{{ item.index }}</small>
+            </a>
+          }
+        </nav>
+      </div>
+    </ion-content>
+  </ion-menu>
+  }
+
+  <ion-content #scroller id="main" class="site-scroll" [fullscreen]="true">
+    <header class="topbar">
+      <a class="brand" routerLink="/" aria-label="Aurion home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>{{ theme.brand }}</strong>
+          <small>INTERIORS</small>
+        </span>
+      </a>
+
+      <nav class="desk-nav" aria-label="Primary">
+        @for (item of navigation; track item.path) {
+          <a matRipple class="ripple-surface" [routerLink]="item.path" routerLinkActive="is-active">{{ item.label }}</a>
+        }
+      </nav>
+
+      <div class="top-actions">
+        <button matRipple type="button" class="btn solid tiny ripple-surface" appMeeting>Book a Meeting</button>
+        <button matRipple type="button" class="menu-btn ripple-surface" (click)="openMenu()" aria-label="Open menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <router-outlet />
+
+    @defer (on viewport) {
+    <footer class="site-foot">
+      <div>
+        <a class="logo" routerLink="/">{{ theme.brand }}</a>
+        <p>Interiors for homes, offices, restaurants, and retail.</p>
+      </div>
+      <div>
+        <p class="foot-label">Company</p>
+        <ul>
+          @for (item of navigation; track item.path) {
+            <li><a [routerLink]="item.path">{{ item.label }}</a></li>
+          }
+        </ul>
+      </div>
+      <div>
+        <p class="foot-label">Studios</p>
+        <ul>
+          <li>Dubai — Marina gate</li>
+          <li>Singapore — Robertson quay</li>
+          <li>Oslo — Bjørvika</li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-label">Connect</p>
+        <ul>
+          <li><a href="mailto:hello@aurion.atelier">hello@aurion.atelier</a></li>
+          <li><button type="button" class="text-link" appMeeting>Book a meeting</button></li>
+        </ul>
+      </div>
+    </footer>
+    } @placeholder {
+      <div class="defer-slot defer-slot-footer" aria-hidden="true"></div>
+    }
+  </ion-content>
+</ion-app>

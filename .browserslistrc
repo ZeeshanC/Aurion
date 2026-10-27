@@ -1,0 +1,7 @@
+# Angular 22 support. See https://angular.dev/reference/versions#browser-support
+
+Chrome >= 119
+Firefox >= 119
+Edge >= 119
+Safari >= 17
+iOS >= 17

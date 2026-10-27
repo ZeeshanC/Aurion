@@ -1,0 +1,71 @@
+<article class="page">
+  <header class="wrap subhero" appReveal>
+    <p class="kicker"><span>05</span> Contact</p>
+    <h1>Open a <em>channel</em>.</h1>
+    <p class="lede">
+      Share the room, the city, and the feeling you want people to keep. This preview keeps the brief in your browser only.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="wrap form-grid">
+      <div class="studio-stack">
+        @for (studio of studios; track studio.city) {
+          <article class="studio-card" appReveal [revealDelay]="$index * 80">
+            <p class="idx">{{ studio.role }}</p>
+            <h3>{{ studio.city }}</h3>
+            <p>{{ studio.note }}</p>
+          </article>
+        }
+        <p class="lede">Direct line · <a href="mailto:hello@aurion.atelier">hello@aurion.atelier</a></p>
+      </div>
+
+      @if (sent()) {
+        <div class="sealed" animate.enter="rise-in">
+          <p class="kicker">Brief locked</p>
+          <h2>Received, {{ form.controls.name.value }}.</h2>
+          <p class="lede">
+            {{ theme.brand }} has your note for a {{ form.controls.typology.value.toLowerCase() }} in this session. Connect a mailbox when you want it to leave the browser.
+          </p>
+        </div>
+      } @else {
+        <form class="meta-panel form-stack" appReveal [revealDelay]="80" [formGroup]="form" (ngSubmit)="submit()">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" formControlName="name" autocomplete="name" />
+            @if (showError('name')) {
+              <small class="err">A name keeps the brief addressed.</small>
+            }
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" formControlName="email" autocomplete="email" />
+            @if (showError('email')) {
+              <small class="err">Use a full email address.</small>
+            }
+          </label>
+          <label class="field">
+            <span>Discipline</span>
+            <select formControlName="typology">
+              @for (item of disciplines; track item.index) {
+                <option [value]="item.title">{{ item.title }}</option>
+              }
+            </select>
+          </label>
+          <label class="field">
+            <span>City</span>
+            <input type="text" formControlName="city" autocomplete="address-level2" />
+          </label>
+          <label class="field">
+            <span>Brief</span>
+            <textarea formControlName="message" placeholder="Site, scale, and the atmosphere you want."></textarea>
+            @if (showError('message')) {
+              <small class="err">Give us at least a sentence or two.</small>
+            }
+          </label>
+          <button matRipple class="btn solid ripple-surface" type="submit">Transmit brief</button>
+        </form>
+      }
+    </div>
+  </section>
+</article>
