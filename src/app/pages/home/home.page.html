@@ -1,10 +1,16 @@
 <article class="page">
   <section class="hero">
+    <app-space-scene />
     <div class="wrap hero-copy">
       <h1>
         <span class="outline">We create</span>
         <span class="outline">space.</span>
       </h1>
+      <p class="hero-lead">Interior design for homes, offices, restaurants, and shops. Tell us the room. We will shape it.</p>
+      <div class="hero-actions">
+        <button matRipple type="button" class="btn solid ripple-surface" appMeeting>Book a meeting</button>
+        <a matRipple class="btn ghost ripple-surface" routerLink="/works">See the work</a>
+      </div>
     </div>
   </section>
 
@@ -22,7 +28,7 @@
         @for (item of offers; track item.index) {
           <a
             matRipple
-            class="offer-card ripple-surface"
+            class="offer-card ripple-surface" appTilt
             appReveal
             [revealDelay]="$index * 90"
             routerLink="/disciplines"
@@ -88,7 +94,7 @@
         @for (work of featured; track work.slug) {
           <a
             matRipple
-            class="work-card ada-card ripple-surface"
+            class="work-card ada-card ripple-surface" appTilt
             appReveal
             [revealDelay]="$index * 70"
             [routerLink]="['/works', work.slug]"

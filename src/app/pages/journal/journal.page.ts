@@ -1,10 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { journal } from '../../data/studio.content';
 import { motionImports } from '../../motion/motion';
 import { VizPlate } from '../../shared/viz-plate.component';
-import { theme } from '../../../theme/theme.config';
 
 @Component({
   selector: 'app-journal',
@@ -13,8 +11,4 @@ import { theme } from '../../../theme/theme.config';
 })
 export class JournalPage {
   readonly notes = journal;
-
-  constructor() {
-    inject(Title).setTitle(`Journal — ${theme.brand}`);
-  }
 }

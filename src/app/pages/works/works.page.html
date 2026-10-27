@@ -1,5 +1,7 @@
 <article class="page">
-  <header class="wrap subhero" appReveal>
+  <header class="wrap subhero stage" appReveal>
+    <app-space-scene variant="orbit" />
+    <div class="stage-copy">
     <p class="kicker"><span>03</span> Works</p>
     <h1>The archive of <em>built rooms</em>.</h1>
     <p class="lede">Six environments from the current orbit. Filter by the way the room is used.</p>
@@ -10,6 +12,7 @@
         </button>
       }
     </div>
+    </div>
   </header>
 
   <section class="section">
@@ -17,7 +20,7 @@
       @for (work of works(); track work.slug) {
         <a
           matRipple
-          class="work-card ripple-surface"
+          class="work-card ripple-surface" appTilt
           animate.enter="rise-in"
           animate.leave="rise-out"
           [style.animation-delay.ms]="$index * 70"

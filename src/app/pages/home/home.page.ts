@@ -1,5 +1,4 @@
 import { afterNextRender, Component, ElementRef, inject } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { disciplines, projects } from '../../data/studio.content';
@@ -11,7 +10,7 @@ import { theme } from '../../../theme/theme.config';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
-  imports: [RouterLink, VizPlate, ...motionImports],
+  imports: [RouterLink, VizPlate, MeetingDirective, ...motionImports],
 })
 export class HomePage {
   private readonly host = inject(ElementRef<HTMLElement>);
@@ -23,7 +22,6 @@ export class HomePage {
   readonly industries = ['Residential', 'Offices', 'Restaurants', 'Retail', 'Hospitality', 'Wellness'];
 
   constructor() {
-    inject(Title).setTitle(`${theme.brand} — ${theme.tagline}`);
     afterNextRender(() => this.playHero());
   }
 

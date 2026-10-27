@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, input } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../seo/seo.service';
 import { findArticle } from '../../data/studio.content';
 import { motionImports } from '../../motion/motion';
 import { VizPlate } from '../../shared/viz-plate.component';
@@ -16,10 +16,22 @@ export class JournalDetailPage {
   readonly article = computed(() => findArticle(this.slug()));
 
   constructor() {
-    const title = inject(Title);
+    const seo = inject(SeoService);
     effect(() => {
       const article = this.article();
-      title.setTitle(article ? `${article.title} — ${theme.brand}` : `Signal lost — ${theme.brand}`);
+      seo.apply(
+        article
+          ? {
+              title: `${article.title} — ${theme.brand} journal`,
+              description: article.excerpt,
+              path: `/journal/${article.slug}`,
+            }
+          : {
+              title: `Article not found — ${theme.brand}`,
+              description: 'That note is not in the Aurion journal.',
+              path: '/journal',
+            },
+      );
     });
   }
 }

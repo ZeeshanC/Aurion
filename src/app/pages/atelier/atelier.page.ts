@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { materials, principles, studios, team } from '../../data/studio.content';
 import { motionImports } from '../../motion/motion';
@@ -17,8 +16,4 @@ export class AtelierPage {
   readonly materials = materials;
   readonly team = team;
   readonly studios = studios;
-
-  constructor() {
-    inject(Title).setTitle(`Atelier — ${theme.brand}`);
-  }
 }

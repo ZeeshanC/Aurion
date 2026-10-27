@@ -1,9 +1,12 @@
 <article class="page">
   @if (article(); as note) {
-    <header class="wrap subhero" appReveal>
+    <header class="wrap subhero stage" appReveal>
+      <app-space-scene variant="stack" />
+      <div class="stage-copy">
       <p class="kicker"><span>{{ note.code }}</span> {{ note.date }}</p>
       <h1>{{ note.title }}</h1>
       <p class="lede">{{ note.excerpt }}</p>
+      </div>
     </header>
     <section class="section">
       <div class="wrap detail-hero" appReveal [revealDelay]="90">

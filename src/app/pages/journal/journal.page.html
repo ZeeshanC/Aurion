@@ -1,14 +1,17 @@
 <article class="page">
-  <header class="wrap subhero" appReveal>
+  <header class="wrap subhero stage" appReveal>
+    <app-space-scene variant="stack" />
+    <div class="stage-copy">
     <p class="kicker"><span>04</span> Journal</p>
     <h1>Field notes on <em>light and matter</em>.</h1>
     <p class="lede">Short essays from the atelier. No trends. Observations we are willing to build with.</p>
+    </div>
   </header>
 
   <section class="section">
     <div class="wrap journal-grid">
       @for (note of notes; track note.slug) {
-        <a matRipple class="note-card ripple-surface" appReveal [revealDelay]="$index * 90" [routerLink]="['/journal', note.slug]">
+        <a matRipple class="note-card ripple-surface" appTilt appReveal [revealDelay]="$index * 90" [routerLink]="['/journal', note.slug]">
           <app-viz [kind]="note.viz" />
           <div class="copy">
             <span class="mono">{{ note.code }} · {{ note.date }}</span>

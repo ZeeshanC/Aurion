@@ -5,6 +5,7 @@ import { AnimationController, IonApp, IonContent, IonMenu, MenuController } from
 import { MatRipple } from '@angular/material/core';
 import { filter } from 'rxjs';
 import { MeetingDirective } from './meeting/meeting.directive';
+import { SeoService } from './seo/seo.service';
 import { navigation } from './data/studio.content';
 import { applyTheme, theme } from '../theme/theme.config';
 
@@ -18,6 +19,7 @@ export class AppComponent {
   private readonly router = inject(Router);
   private readonly menu = inject(MenuController);
   private readonly animations = inject(AnimationController);
+  private readonly seo = inject(SeoService);
   private readonly scroller = viewChild<IonContent>('scroller');
 
   readonly theme = theme;
@@ -37,6 +39,7 @@ export class AppComponent {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => {
+        this.applyRouteSeo();
         void this.menu.close('nav');
         setTimeout(() => {
           void this.scroller()?.scrollToTop(0);
@@ -82,6 +85,18 @@ export class AppComponent {
       .play();
   }
 
+  private applyRouteSeo(): void {
+    let route = this.router.routerState.snapshot.root;
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    const title = route.data['title'];
+    const description = route.data['description'];
+    if (typeof title === 'string' && typeof description === 'string') {
+      this.seo.apply({ title, description, path: this.router.url.split('?')[0] || '/' });
+    }
+  }
+
   private playPage(): void {
     const page = document.querySelector('article.page');
     if (!page || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -93,7 +108,7 @@ export class AppComponent {
       .duration(560)
       .easing('cubic-bezier(0.22, 1, 0.36, 1)')
       .fromTo('opacity', '0', '1')
-      .fromTo('transform', 'translateY(22px)', 'translateY(0)')
+      .fromTo('transform', 'perspective(1400px) rotateX(10deg) translateY(36px)', 'perspective(1400px) rotateX(0deg) translateY(0)')
       .play();
   }
 

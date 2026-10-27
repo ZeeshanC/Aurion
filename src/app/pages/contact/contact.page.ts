@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { disciplines, studios } from '../../data/studio.content';
 import { motionImports } from '../../motion/motion';
 import { theme } from '../../../theme/theme.config';
@@ -25,10 +24,6 @@ export class ContactPage {
     city: [''],
     message: ['', [Validators.required, Validators.minLength(20)]],
   });
-
-  constructor() {
-    inject(Title).setTitle(`Contact — ${theme.brand}`);
-  }
 
   showError(key: 'name' | 'email' | 'typology' | 'message'): boolean {
     const control = this.form.controls[key];

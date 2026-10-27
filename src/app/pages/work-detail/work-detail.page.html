@@ -1,9 +1,12 @@
 <article class="page">
   @if (project(); as work) {
-    <header class="wrap subhero" appReveal>
+    <header class="wrap subhero stage" appReveal>
+      <app-space-scene variant="hall" />
+      <div class="stage-copy">
       <p class="kicker"><span>{{ work.code }}</span> {{ work.typology }}</p>
       <h1>{{ work.title }}</h1>
       <p class="lede">{{ work.summary }}</p>
+      </div>
     </header>
 
     <section class="section">

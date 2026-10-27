@@ -103,6 +103,30 @@ app-viz {
 
 .page {
   padding-top: var(--header-h);
+  transform-origin: center top;
+}
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  min-height: 460px;
+  overflow: hidden;
+}
+
+.stage-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.detail-hero .viz,
+.portrait .viz {
+  animation: yaw 14s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+@keyframes yaw {
+  from { transform: perspective(900px) rotateY(-12deg) rotateX(4deg); }
+  to { transform: perspective(900px) rotateY(12deg) rotateX(-3deg); }
 }
 
 .defer-slot {
@@ -1336,7 +1360,6 @@ select:focus-visible {
     width: min(var(--page-width), calc(100% - 28px));
   }
 
-  .top-actions .btn,
   .hero-facts {
     display: none;
   }
@@ -1453,6 +1476,32 @@ ion-app {
   opacity: 0;
 }
 
+.hero-lead {
+  max-width: 34rem;
+  margin: 22px auto 0;
+  color: var(--ink);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.55;
+}
+
+.hero .hero-actions {
+  justify-content: center;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 80;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: var(--void);
+}
+
+.skip:focus {
+  top: 12px;
+}
+
 .outline {
   -webkit-text-stroke: 1.35px var(--ink);
 }
@@ -1544,6 +1593,12 @@ ion-app {
 
 .industry-row a:hover {
   color: var(--faint);
+}
+
+.feature-grid,
+.work-grid,
+.offer-grid {
+  perspective: 1200px;
 }
 
 .feature-grid,
