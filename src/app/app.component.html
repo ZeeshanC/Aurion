@@ -39,7 +39,7 @@
       </nav>
 
       <div class="top-actions">
-        <button matRipple type="button" class="btn solid tiny ripple-surface" appMeeting>Book a Meeting</button>
+        <app-meeting-menu appearance="btn solid tiny ripple-surface">Book a Meeting</app-meeting-menu>
         <button matRipple type="button" class="menu-btn ripple-surface" (click)="openMenu()" aria-label="Open menu">
           <span></span>
           <span></span>
@@ -77,7 +77,7 @@
         <p class="foot-label">Connect</p>
         <ul>
           <li><a href="mailto:hello@aurion.atelier">hello@aurion.atelier</a></li>
-          <li><button type="button" class="text-link" appMeeting>Book a meeting</button></li>
+          <li><app-meeting-menu appearance="text-link">Book a meeting</app-meeting-menu></li>
         </ul>
       </div>
     </footer>

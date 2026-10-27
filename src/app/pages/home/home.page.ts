@@ -2,7 +2,7 @@ import { afterNextRender, Component, ElementRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { disciplines, projects } from '../../data/studio.content';
-import { MeetingDirective } from '../../meeting/meeting.directive';
+import { MeetingMenu } from '../../meeting/meeting-menu.component';
 import { motionImports } from '../../motion/motion';
 import { VizPlate } from '../../shared/viz-plate.component';
 import { theme } from '../../../theme/theme.config';
@@ -10,7 +10,7 @@ import { theme } from '../../../theme/theme.config';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
-  imports: [RouterLink, VizPlate, MeetingDirective, ...motionImports],
+  imports: [RouterLink, VizPlate, MeetingMenu, ...motionImports],
 })
 export class HomePage {
   private readonly host = inject(ElementRef<HTMLElement>);

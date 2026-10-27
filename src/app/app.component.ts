@@ -4,7 +4,7 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fro
 import { AnimationController, IonApp, IonContent, IonMenu, MenuController } from '@ionic/angular';
 import { MatRipple } from '@angular/material/core';
 import { filter } from 'rxjs';
-import { MeetingDirective } from './meeting/meeting.directive';
+import { MeetingMenu } from './meeting/meeting-menu.component';
 import { SeoService } from './seo/seo.service';
 import { navigation } from './data/studio.content';
 import { applyTheme, theme } from '../theme/theme.config';
@@ -12,7 +12,7 @@ import { applyTheme, theme } from '../theme/theme.config';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonContent, IonMenu, RouterOutlet, RouterLink, RouterLinkActive, MatRipple, MeetingDirective],
+  imports: [IonApp, IonContent, IonMenu, RouterOutlet, RouterLink, RouterLinkActive, MatRipple, MeetingMenu],
 })
 export class AppComponent {
   private readonly destroyRef = inject(DestroyRef);
